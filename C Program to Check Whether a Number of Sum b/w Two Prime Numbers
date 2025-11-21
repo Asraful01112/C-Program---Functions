@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+bool isPrime(int num) {
+    if (num <= 1)
+        return false;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0)
+            return false;
+    }
+    return true;
+}
+
+int main() {
+    int number;
+    bool found = false;
+
+    printf("Enter a positive integer: ");
+    scanf("%d", &number);
+
+    for (int i = 2; i <= number / 2; i++) {
+        int j = number - i;
+        if (isPrime(i) && isPrime(j)) {
+            printf("%d can be expressed as the sum of %d and %d.\n", number, i, j);
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("%d cannot be expressed as the sum of two prime numbers.\n", number);
+    }
+
+    return 0;
+}
